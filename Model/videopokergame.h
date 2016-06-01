@@ -1,27 +1,35 @@
-///////////////////////////////////////////////////////////////////////
-// File:  Jack or Bette Games
-//
-// Author: Michael Landry
-// This assignment represents my own work and is in accordance with the College Academic Policy
-//
-// Copyright (c) 2016 All Right Reserved by Michael Landry
-// Contributors:
-// Description:  This is the game of poker Jack or Better, this programme simulate 5 card poker hand
-// and the player is able to change any card for a redraw and have new card. the player win if I have a pair of jack or better
-//
-// Date: mai 13 2016
-// Revisions:
-//
-/////////////////////////////////////////////////////////////////////
-
 #ifndef VIDEOPOKERGAME_H
 #define VIDEOPOKERGAME_H
 
+#include "deck.h"
+#include "hand.h"
 
-class VideoPokerGame
+
+class videoPokerGame
 {
 public:
-    VideoPokerGame();
+    videoPokerGame();
+
+    void isCardHoldAtIdx(int idx);
+    void dealOrDraw();
+    void toggelHoldAtIdx(int idx);
+    void cardToStringAtIdx(int idx);
+    void cardColorStringAtIdx(int idx);
+    bool isPlayedHand();
+    bool isNewHand();
+
+
+
+private:
+    void drawCard();
+    void dealCard();
+    std::vector<bool> _hold;
+
+Deck deck;
+Hand hand;
+bool _GameState;
+
+
 };
 
 #endif // VIDEOPOKERGAME_H
