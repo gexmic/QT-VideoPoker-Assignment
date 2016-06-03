@@ -1,6 +1,6 @@
 #include "hand.h"
 
-///////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////
 // File:  Jack or Bette Games
 //
 // Author: Michael Landry
@@ -10,11 +10,12 @@
 // Contributors:
 // Description:  This is the game of poker Jack or Better, this programme simulate 5 card poker hand
 // and the player is able to change any card for a redraw and have new card. the player win if I have a pair of jack or better
+// all the card are old in the hand call like the real life.
 //
-// Date: mai 13 2016
+// Date: juin 3 2016
 // Revisions:
 //
-/////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////
 
 #include "Hand.h"
 
@@ -224,11 +225,12 @@ bool Hand::isRoyalFlush() const
     return false;
 }
 
+// return the sise of the vector _hand
 int Hand::handSize()
 {
     return static_cast<int>(_hand.size());
 }
-
+// fill the vector with true for the hold or not
 void Hand::fillVectorWithTrue()
 {
     _hold.clear();
@@ -238,8 +240,7 @@ void Hand::fillVectorWithTrue()
     }
 }
 
-
-
+// to know witch coler is the card and the view draw will change the font coler
  bool Hand::cardColor(int idx)
 {
     if (_hand.at(idx)->suit == Suit::DIAMOND || _hand.at(idx)->suit == Suit::HEART)
@@ -296,7 +297,7 @@ void Hand::DrawCardForSecoundHand()
         _checkForStrait.insert(itr->face);
     }
 }
-
+// check if the card is hold at index that is ask
 bool Hand::isCardHoldAtIdx(int idx)
 {
     if(_hold.at(idx))
@@ -304,7 +305,7 @@ bool Hand::isCardHoldAtIdx(int idx)
     else
         return false;
 }
-
+// toggle true or false depend on the click on the card
 void Hand::toggelHoldAtIdx(int idx)
 {
     _hold[idx] = !_hold[idx];

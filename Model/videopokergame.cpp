@@ -1,3 +1,20 @@
+// /////////////////////////////////////////////////////////////////////
+// File:  Jack or Bette Games
+//
+// Author: Michael Landry
+// This assignment represents my own work and is in accordance with the College Academic Policy
+//
+// Copyright (c) 2016 All Right Reserved by Michael Landry
+// Contributors:
+// Description:  This is the game of poker Jack or Better, this programme simulate 5 card poker hand
+// and the player is able to change any card for a redraw and have new card. the player win if I have a pair of jack or better
+// all the card are old in the hand call like the real life.
+//
+// Date: juin 3 2016
+// Revisions:
+//
+// ///////////////////////////////////////////////////////////////////
+
 #include "videopokergame.h"
 
 videoPokerGame::videoPokerGame()
@@ -50,7 +67,7 @@ CardColor videoPokerGame::cardColorAtIdx(int idx)
     else
         return CardColor::Black;
 }
-
+// return a boolean to know of the state of the fame is playerd hand
 bool videoPokerGame::isPlayedHand()
 {
     if(_GameState)
@@ -58,7 +75,7 @@ bool videoPokerGame::isPlayedHand()
     else
         return false;
 }
-
+// return a boolean if the state of the game is new hand
 bool videoPokerGame::isNewHand()
 {
     if(_GameState == false)
@@ -67,11 +84,13 @@ bool videoPokerGame::isNewHand()
         return false;
 }
 
+// set the game state
 void videoPokerGame::gameState(bool b)
 {
     _GameState = b;
 }
 
+// find the value of the hand
 Rank videoPokerGame::findValueOftheHand() const
 {
     if (hand.isRoyalFlush()) return Rank::ROYAL_FLUSH;
@@ -86,17 +105,17 @@ Rank videoPokerGame::findValueOftheHand() const
     else return Rank::NOTHING;
 
 }
-
+// fill the vector tha contain bool for the hold or not
 void videoPokerGame::fillVectorWithTrue()
 {
     hand.fillVectorWithTrue();
 }
-
+// change the card that the player whatn
 void videoPokerGame::drawSecoundHand()
 {
     hand.DrawCardForSecoundHand();
 }
-
+// toggle hold on the card that the player click
 void videoPokerGame::toggelHoldAtIdx(int idx)
 {
     hand.toggelHoldAtIdx(idx);
@@ -104,6 +123,7 @@ void videoPokerGame::toggelHoldAtIdx(int idx)
 
 void videoPokerGame::dealOrDraw()
 {
+    // if the game state is play hand get new card
     if(_GameState)
     {
         while (hand.handSize() < 5)
@@ -112,6 +132,7 @@ void videoPokerGame::dealOrDraw()
         }
 
     }
+    // if the game state is new hand clear the hand and shuffle the deck for a new game
     else
     {
         hand.clear();
