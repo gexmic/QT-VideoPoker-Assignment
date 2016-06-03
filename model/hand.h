@@ -24,12 +24,14 @@
 #include <map>
 #include <memory>
 #include "Deck.h"
+#include "Card.h"
 #include <algorithm>
 #include <sstream>
 #include <utility>
 #include <vector>
 
 using CardPtr = std::shared_ptr<Card>;
+
 
 class Hand
 {
@@ -43,6 +45,8 @@ public:
     void changCard(int);
     void holdOrDraw(std::vector<bool>);
     void DrawCardForSecoundHand();
+    bool isCardHoldAtIdx(int idx);
+    void toggelHoldAtIdx(int idx);
 
     int size();
 
@@ -57,10 +61,10 @@ public:
     bool isStraitFlush() const;
     bool isRoyalFlush() const;
 
-    std::string toString() const;
-    std::string noHoldAndDrawToString()const;
-
-
+    int handSize();
+    void fillVectorWithTrue();
+    bool cardColor(int idx);
+    std::string cardToString(int idx);
 
 private:
     // different container to hold data related to the card to check different poker hand

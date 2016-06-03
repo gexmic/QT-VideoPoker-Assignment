@@ -21,7 +21,7 @@
 // function to put the card to a string FaceName and SuitName
 std::string Card::toString() const
 {
-    return faceNames.at(face) + " of " + suitNames.at(suit);
+    return faceNames.at(face) + suitNames.at(suit);
 }
 
 
@@ -69,10 +69,10 @@ const std::map<Face, std::string> Card::faceNames{
 
 // map to set the name of the suit
 const std::map<Suit, std::string> Card::suitNames{
-    {Suit::HEART, "heart"},
-    {Suit::DIAMOND, "diamond"},
-    {Suit::CLUB, "club"},
-    {Suit::SPADE, "spade"}
+    {Suit::HEART, "♥"},
+    {Suit::DIAMOND, "♦"},
+    {Suit::CLUB, "♣"},
+    {Suit::SPADE, "♠"}
 };
 
 //operator overLoad for the cout

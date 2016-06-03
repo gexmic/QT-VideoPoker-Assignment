@@ -47,7 +47,7 @@ void Hand::clear()
 // return the size of the vector _hand
 int Hand::size()
 {
-    return _hand.size();
+    return static_cast<int>(_hand.size());
 }
 
 // bool to check if the hand is a pair
@@ -224,48 +224,38 @@ bool Hand::isRoyalFlush() const
     return false;
 }
 
+int Hand::handSize()
+{
+    return static_cast<int>(_hand.size());
+}
+
+void Hand::fillVectorWithTrue()
+{
+    _hold.clear();
+    for(int i = 0 ; i < _hand.size();++i)
+    {
+        _hold.push_back(false);
+    }
+}
+
+
+
+ bool Hand::cardColor(int idx)
+{
+    if (_hand.at(idx)->suit == Suit::DIAMOND || _hand.at(idx)->suit == Suit::HEART)
+        return true;
+    else
+        return false;
+}
+
 // convert the cardPrt to set a string to display to the user
-std::string Hand::toString() const
+std::string Hand::cardToString(int idx)
 {
-    std::stringstream ss;
-    std::string myHand;
-    int number = 1;
-    int count = 0;
-
-
-    for (auto itr : _hand)
-    {
-        // this is to print hold and draw depent of the user choise to keep the card or not
-        if (_hold.at(count)==true)
-        {
-            ss << number << ": " << *itr << " (hold)"<< std::endl;
-
-        }
-        if (_hold.at(count) == false)
-        {
-            ss << number << ": " << *itr << " (draw)" << std::endl;
-        }
-
-        number++;
-        count++;
-    }
-    return ss.str();
+    std::string card=_hand.at(idx)->toString();
+    return card;
 }
 
-// another toString whit out the draw and hold to display after the game is over
-std::string Hand::noHoldAndDrawToString() const
-{
-    std::stringstream ss;
-    std::string myHand;
-    int number = 1;
 
-    for (auto itr : _hand)
-    {
-        ss << number << ": " << *itr << std::endl;
-        number++;
-    }
-    return ss.str();
-}
 
 // change from true to false in the vector for the card that the user whant to keep or not
 void Hand::changCard(int cartToChange)
@@ -305,6 +295,19 @@ void Hand::DrawCardForSecoundHand()
         _checkSuit[itr->suit]++;
         _checkForStrait.insert(itr->face);
     }
+}
+
+bool Hand::isCardHoldAtIdx(int idx)
+{
+    if(_hold.at(idx))
+        return true;
+    else
+        return false;
+}
+
+void Hand::toggelHoldAtIdx(int idx)
+{
+    _hold[idx] = !_hold[idx];
 }
 
 
